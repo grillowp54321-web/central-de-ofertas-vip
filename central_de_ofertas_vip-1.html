@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Central de Ofertas VIP — achadinhos e ofertas selecionadas do Mercado Livre.">
+<title>Central de Ofertas VIP</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f4f4;color:#111}
+a{text-decoration:none;color:inherit}
+
+header{
+  background:#070707;border-bottom:4px solid #ffd000;padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+}
+.logo{color:#fff;font-size:25px;font-weight:900;line-height:.95;white-space:nowrap}
+.logo span{color:#ffd000}
+.logo small{display:block;color:#aaa;font-size:11px;font-weight:400;margin-top:7px}
+.menu{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.menu a{background:#15191d;color:#fff;padding:10px 12px;border-radius:7px;font-size:12px;font-weight:700}
+.menu a:hover{background:#ffd000;color:#000}
+
+.hero{
+  min-height:390px;padding:48px 7%;display:flex;align-items:center;color:#fff;
+  background:radial-gradient(circle at 78% 42%,#ffd000 0,#705500 12%,#1b1b1b 39%,#050505 76%);
+}
+.hero-content{max-width:720px}
+.hero h4{color:#ffd000;font-size:19px;margin-bottom:9px}
+.hero h1{font-size:56px;line-height:.94;font-weight:900}
+.hero h1 span{color:#ffd000}
+.hero p{font-size:20px;line-height:1.35;margin:20px 0;color:#eee}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-block;padding:15px 23px;border-radius:11px;font-weight:800}
+.yellow{background:#ffd000;color:#000}
+.outline{border:2px solid #fff;color:#fff}
+.btn:hover{transform:translateY(-1px)}
+
+.section{padding:42px 6%}
+.title{font-size:31px;font-weight:900;margin-bottom:8px}
+.title span{color:#ffd000}
+.subtitle{color:#666;margin-bottom:25px}
+
+.categories{display:grid;grid-template-columns:repeat(8,1fr);gap:12px}
+.category{
+  background:#fff;border-radius:12px;padding:19px 8px;text-align:center;
+  box-shadow:0 3px 12px #00000012;transition:.2s
+}
+.category:hover{transform:translateY(-4px)}
+.category .icon{font-size:40px;margin-bottom:9px}
+.category p{font-size:13px;font-weight:800}
+
+.offers{background:#090909;padding:45px 6%;color:#fff}
+.offers .subtitle{color:#bbb}
+.products{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.product{
+  background:#fff;color:#111;border-radius:13px;overflow:hidden;
+  box-shadow:0 5px 18px #00000040;transition:.2s
+}
+.product:hover{transform:translateY(-5px)}
+.product-image{
+  height:185px;background:linear-gradient(135deg,#eee,#fff);
+  display:flex;align-items:center;justify-content:center;font-size:76px
+}
+.product-info{padding:15px}
+.product h3{font-size:16px;min-height:40px;line-height:1.25}
+.stars{color:#ffb900;margin:8px 0;font-size:14px}
+.price{font-size:22px;font-weight:900}
+.old{font-size:12px;color:#888;text-decoration:line-through;margin-left:5px}
+.discount{background:#ffd000;font-size:11px;padding:3px 5px;border-radius:4px;font-weight:800;margin-left:5px}
+.offer{
+  display:block;background:#09b94b;color:#fff;text-align:center;
+  padding:13px;border-radius:7px;margin-top:13px;font-weight:800
+}
+.offer:hover{background:#078e3a}
+
+.benefits{
+  background:#fff;display:grid;grid-template-columns:repeat(4,1fr);
+  padding:27px 6%;gap:20px
+}
+.benefit{text-align:center;font-weight:800}
+.benefit-icon{font-size:30px;margin-bottom:8px}
+
+.social{background:#080808;color:#fff;text-align:center;padding:42px 20px}
+.social h2{color:#ffd000;font-size:28px}
+.social p{color:#ccc;margin:10px 0 25px}
+.social-buttons{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.social-button{
+  color:#fff;border:1px solid #555;padding:13px 25px;border-radius:9px;font-weight:800
+}
+.social-button:hover{border-color:#ffd000}
+
+.disclosure{
+  background:#fff;color:#555;text-align:center;padding:18px 20px;
+  font-size:12px;line-height:1.5
+}
+footer{background:#050505;color:#888;text-align:center;padding:20px;font-size:12px;line-height:1.6}
+
+@media(max-width:1000px){
+  header{flex-direction:column}
+  .categories{grid-template-columns:repeat(4,1fr)}
+  .products{grid-template-columns:repeat(2,1fr)}
+  .benefits{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:600px){
+  header{padding:15px 10px}
+  .logo{text-align:center;white-space:normal}
+  .menu a{padding:8px 9px;font-size:10px}
+  .hero{min-height:420px;padding:38px 20px;text-align:center}
+  .hero h1{font-size:39px}
+  .hero p{font-size:17px}
+  .buttons{justify-content:center}
+  .section{padding:30px 14px}
+  .title{font-size:25px}
+  .categories{grid-template-columns:repeat(2,1fr)}
+  .products{grid-template-columns:repeat(2,1fr);gap:10px}
+  .product-image{height:125px;font-size:52px}
+  .product-info{padding:10px}
+  .product h3{font-size:13px}
+  .price{font-size:17px}
+  .offer{font-size:11px;padding:11px 3px}
+  .benefits{grid-template-columns:1fr 1fr;padding:25px 12px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    🛒 CENTRAL DE OFERTAS <span>VIP</span>
+    <small>Achadinhos, ofertas e produtos selecionados</small>
+  </div>
+  <nav class="menu">
+    <a href="#inicio">🏠 Início</a>
+    <a href="#ofertas">🔥 Ofertas</a>
+    <a href="#categorias">📦 Categorias</a>
+    <a href="#celulares">📱 Celulares</a>
+    <a href="#casa">🏠 Casa</a>
+    <a href="#games">🎮 Games</a>
+    <a href="#auto">🚗 Auto</a>
+  </nav>
+</header>
+
+<section class="hero" id="inicio">
+  <div class="hero-content">
+    <h4>BEM-VINDO(A) À</h4>
+    <h1>CENTRAL DE<br><span>OFERTAS VIP</span></h1>
+    <p>Os melhores achadinhos do Mercado Livre em um só lugar!</p>
+    <div class="buttons">
+      <a class="btn yellow" href="#ofertas">🔥 VER OFERTAS →</a>
+      <a class="btn outline" href="#ofertas">🛍️ TODOS OS PRODUTOS</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="categorias">
+  <h2 class="title">▦ CATEGORIAS</h2>
+  <p class="subtitle">Encontre os produtos que você procura de forma rápida e fácil!</p>
+
+  <div class="categories">
+    <a class="category" id="celulares" href="#ofertas"><div class="icon">📱</div><p>Celulares</p></a>
+    <a class="category" id="games" href="#ofertas"><div class="icon">🎮</div><p>Games</p></a>
+    <a class="category" id="casa" href="#ofertas"><div class="icon">🏠</div><p>Casa</p></a>
+    <a class="category" id="auto" href="#ofertas"><div class="icon">🚗</div><p>Automotivo</p></a>
+    <a class="category" href="#ofertas"><div class="icon">👕</div><p>Moda</p></a>
+    <a class="category" href="#ofertas"><div class="icon">👶</div><p>Bebês</p></a>
+    <a class="category" href="#ofertas"><div class="icon">💻</div><p>Informática</p></a>
+    <a class="category" href="#ofertas"><div class="icon">🎧</div><p>Eletrônicos</p></a>
+  </div>
+</section>
+
+<section class="offers" id="ofertas">
+  <h2 class="title">🔥 OFERTAS DO <span>DIA</span></h2>
+  <p class="subtitle">Produtos selecionados pela Central de Ofertas VIP.</p>
+
+  <div class="products">
+
+    <div class="product">
+      <div class="product-image">📱</div>
+      <div class="product-info">
+        <h3>Samsung Galaxy A17 128GB</h3>
+        <div class="stars">★★★★★ 4.8</div>
+        <span class="price">Confira o preço</span>
+        <a class="offer" href="https://meli.la/19bZzxw" target="_blank" rel="nofollow sponsored noopener">🛒 VER OFERTA</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">🔋</div>
+      <div class="product-info">
+        <h3>Power Bank Basike 20.000mAh</h3>
+        <div class="stars">★★★★★ 4.7</div>
+        <span class="price">Confira o preço</span>
+        <a class="offer" href="https://meli.la/1hRUFpf" target="_blank" rel="nofollow sponsored noopener">🛒 VER OFERTA</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">🎧</div>
+      <div class="product-info">
+        <h3>Soundcore P30i Bluetooth</h3>
+        <div class="stars">★★★★★ 4.8</div>
+        <span class="price">Confira o preço</span>
+        <a class="offer" href="https://meli.la/2v2GMue" target="_blank" rel="nofollow sponsored noopener">🛒 VER OFERTA</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">🍟</div>
+      <div class="product-info">
+        <h3>Air Fryer Elgin Family Oven 12L</h3>
+        <div class="stars">★★★★★ 4.8</div>
+        <span class="price">Confira o preço</span>
+        <a class="offer" href="https://meli.la/1nyEY5D" target="_blank" rel="nofollow sponsored noopener">🛒 VER OFERTA</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">🧹</div>
+      <div class="product-info">
+        <h3>Aspirador Britânia 1250W</h3>
+        <div class="stars">★★★★★ 4.8</div>
+        <span class="price">Confira o preço</span>
+        <a class="offer" href="https://meli.la/1mmgwBP" target="_blank" rel="nofollow sponsored noopener">🛒 VER OFERTA</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">📺</div>
+      <div class="product-info">
+        <h3>Micro-ondas Electrolux 23L</h3>
+        <div class="stars">★★★★★ 4.8</div>
+        <span class="price">Confira o preço</span>
+        <a class="offer" href="https://meli.la/2VhzVmv" target="_blank" rel="nofollow sponsored noopener">🛒 VER OFERTA</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">☕</div>
+      <div class="product-info">
+        <h3>Cafeteira Electrolux ECM10</h3>
+        <div class="stars">★★★★★ 4.8</div>
+        <span class="price">Confira o preço</span>
+        <a class="offer" href="https://meli.la/1C8ittv" target="_blank" rel="nofollow sponsored noopener">🛒 VER OFERTA</a>
+      </div>
+    </div>
+
+    <div class="product">
+      <div class="product-image">🧹</div>
+      <div class="product-info">
+        <h3>Aspirador WAP Power Speed Max</h3>
+        <div class="stars">★★★★★ 4.8</div>
+        <span class="price">Confira o preço</span>
+        <a class="offer" href="https://meli.la/1XVmSNC" target="_blank" rel="nofollow sponsored noopener">🛒 VER OFERTA</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="benefit"><div class="benefit-icon">🚚</div>Entrega pelo Mercado Livre</div>
+  <div class="benefit"><div class="benefit-icon">🛡️</div>Compra no Mercado Livre</div>
+  <div class="benefit"><div class="benefit-icon">💳</div>Diversas formas de pagamento</div>
+  <div class="benefit"><div class="benefit-icon">🔥</div>Ofertas atualizadas</div>
+</section>
+
+<section class="social">
+  <h2>📢 NÃO PERCA NENHUMA OFERTA!</h2>
+  <p>Siga a Central de Ofertas VIP para acompanhar novos achadinhos e promoções.</p>
+  <div class="social-buttons">
+    <a class="social-button" href="#" target="_blank">🎵 TikTok<br>Central de Ofertas VIP</a>
+    <a class="social-button" href="#" target="_blank">💬 WhatsApp<br>Central de Ofertas VIP</a>
+  </div>
+</section>
+
+<div class="disclosure">
+  <strong>Transparência:</strong> a Central de Ofertas VIP participa de programa de afiliados e pode receber comissão por compras realizadas através de links de afiliado. Os preços, descontos, condições e disponibilidade podem mudar; confira as informações diretamente no Mercado Livre.
+</div>
+
+<footer>
+  <strong>Central de Ofertas VIP</strong><br>
+  Achadinhos, ofertas e produtos selecionados.
+</footer>
+
+</body>
+</html>
